@@ -229,20 +229,24 @@
 
 
 (* ::Input:: *)
-(*FisherInformation[rhotmp_]:= Module[{lstmp, vec1tmp,vec2tmp,vec3tmp,vec4tmp,var1, i,j},*)
-(*lstmp=Eigensystem [rhotmp];*)
-(*vec1tmp=lstmp[[1]];*)
-(*vec2tmp=lstmp[[2]];*)
-(*vec3tmp= FullSimplify[Map[Norm,vec2tmp]];*)
-(*vec4tmp=vec2tmp/vec3tmp;*)
-(*vec5tmp=Table[Transpose[{vec4tmp[[i]]}],{i,1,Length[vec4tmp]}];*)
-(*var1=FullSimplify[ *)
-(*2 FullSimplify[ Sum[If[vec1tmp[[i]]+vec1tmp[[j]] ==0  ,0 ,2 (FullSimplify[Abs[((vec1tmp[[i]]-vec1tmp[[j]]))*)
-(*(FullSimplify[Transpose[Conjugate[vec5tmp[[i]]]]] . A1 .*)
-(*vec5tmp[[j]])]][[1,1]]^2)/(vec1tmp[[i]]+vec1tmp[[j]])],{i,1,Length[vec1tmp]},{j,i+1,Length[vec1tmp]}]]*)
-(*];*)
-(*Return[var1];*)
-(*];*)
+FisherInformation[rhotmp_]:= Module[{lstmp, vec1tmp,vec2tmp,vec3tmp,vec4tmp,var1, i,j},
+lstmp=Eigensystem [rhotmp];
+vec1tmp=lstmp[[1]];
+vec2tmp=lstmp[[2]];
+vec3tmp= FullSimplify[Map[Norm,vec2tmp]];
+vec4tmp=vec2tmp/vec3tmp;
+vec5tmp=Table[Transpose[{vec4tmp[[i]]}],{i,1,Length[vec4tmp]}];
+
+var1=FullSimplify[2 FullSimplify[ Sum[If[vec1tmp[[i]]+vec1tmp[[j]] ==0  ,0 ,2 (FullSimplify[Abs[((vec1tmp[[i]]-vec1tmp[[j]]))
+(FullSimplify[Transpose[Conjugate[vec5tmp[[i]]]]] . A1 .vec5tmp[[j]])]][[1,1]]^2)/(vec1tmp[[i]]+vec1tmp[[j]])],{i,1,Length[vec1tmp]},{j,i+1,Length[vec1tmp]}]]];
+Return[var1];
+];
+(**)
+(**)
+(**)
+(**)
+(**)
+(**)
 
 
 (* ::Input:: *)
